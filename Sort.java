@@ -5,7 +5,6 @@
 
 // MAIN OBJECTIVE: HOW DO YOU WANT TO HAVE BARS DISPLAYED???
 // TODO: Have print Array recieve an array instead of looking at fields
-// TODO: Make a print array method
 // TODO: Learn how to recieve inputs from user at a later date
 
 import java.util.Arrays;

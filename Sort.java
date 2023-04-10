@@ -4,6 +4,7 @@
 // Sorts numbers and shows sorting graphically
 
 // MAIN OBJECTIVE: HOW DO YOU WANT TO HAVE BARS DISPLAYED???
+// TODO: Have print Array recieve an array instead of looking at fields
 // TODO: Make a print array method
 // TODO: Learn how to recieve inputs from user at a later date
 
@@ -31,6 +32,59 @@ public class Sort
 
   }
 
+  public static void printArray()
+  {
+    // To Become a Method
+    // Graphically Represents Arrays
+
+    // Find the maximum value in the array
+    float maximum = entryArray[0];
+    for (float num : entryArray)
+    {
+      if (num > maximum)
+          maximum = num;
+    }
+
+    // Finds the height of each bar in bar graph
+    int[] blocks = new int[numOfEntries];
+    for(int entryNum = 0; entryNum < numOfEntries; entryNum++)
+    {
+
+        float percent = (float)((entryArray[entryNum]*100.0) / maximum);
+        int numBlocks = (int)(percent/20.0);
+        blocks[entryNum] = numBlocks;
+
+    }
+
+    // TODO: When you make the printArray method make the graph scalable at any height
+    //!!!WARNING!!! MAGIC NUMBER
+    // Fills chart from top to bottom
+    for (int chartLevel = 5; chartLevel >= 1; chartLevel--)
+    {
+
+      System.out.print("|");
+
+      // Fills chart from left to right
+      for(int position = 0; position < blocks.length; position++)
+      {
+
+          // Fills position with space or a square
+          if (blocks[position] >= chartLevel)
+          {
+            System.out.print('\u2588');
+          }
+          else
+          {
+            System.out.print(' ');
+          }
+          System.out.print("|");
+
+      }
+      System.out.print("\n");
+    }
+
+  }
+
   public static void main(String [] args)
   {
     // Tell the user if numbers were received from the command line
@@ -46,55 +100,7 @@ public class Sort
     {
 
       storeArray(args);
-
-      // To Become a Method
-      // Graphically Represents Arrays
-
-      // Find the maximum value in the array
-      float maximum = entryArray[0];
-      for (float num : entryArray)
-      {
-        if (num > maximum)
-            maximum = num;
-      }
-
-      // Finds the height of each bar in bar graph
-      int[] blocks = new int[numOfEntries];
-      for(int entryNum = 0; entryNum < numOfEntries; entryNum++)
-      {
-
-          float percent = (float)((entryArray[entryNum]*100.0) / maximum);
-          int numBlocks = (int)(percent/20.0);
-          blocks[entryNum] = numBlocks;
-
-      }
-
-      // TODO: When you make the printArray method make the graph scalable at any height
-      //!!!WARNING!!! MAGIC NUMBER
-      // Fills chart from top to bottom
-      for (int chartLevel = 5; chartLevel >= 1; chartLevel--)
-      {
-
-        System.out.print("|");
-
-        // Fills chart from left to right
-        for(int position = 0; position < blocks.length; position++)
-        {
-
-            // Fills position with space or a square
-            if (blocks[position] >= chartLevel)
-            {
-              System.out.print('\u2588');
-            }
-            else
-            {
-              System.out.print(' ');
-            }
-            System.out.print("|");
-
-        }
-        System.out.print("\n");
-      }
+      printArray();
 
     }
   }

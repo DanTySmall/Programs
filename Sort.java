@@ -3,9 +3,8 @@
 // Not for class just for fun
 // Sorts numbers and shows sorting graphically
 
-// MAIN OBJECTIVE: HOW DO YOU WANT TO HAVE BARS DISPLAYED???
-// TODO: Have print Array recieve an array instead of looking at fields
-// TODO: Learn how to recieve inputs from user at a later date
+// MAIN OBJECTIVE: Create Swap Function
+// ONE DAY: Learn how to recieve inputs from user at a later date
 
 import java.util.Arrays;
 
@@ -45,20 +44,31 @@ public class Sort
     }
 
     // Finds the height of each bar in bar graph
+    int height = 10;
     int[] blocks = new int[numOfEntries];
     for(int entryNum = 0; entryNum < numOfEntries; entryNum++)
     {
-
-        float percent = (float)((entryArray[entryNum]*100.0) / maximum);
-        int numBlocks = (int)(percent/20.0);
-        blocks[entryNum] = numBlocks;
-
+        if(entryArray[entryNum] == 0)
+        {
+          blocks[entryNum] = 0;
+        }
+        else if (entryArray[entryNum] > 0 && (entryArray[entryNum] < (maximum/height)))
+        {
+          blocks[entryNum] = 1;
+        }
+        else
+        {
+           blocks[entryNum] = (int)((entryArray[entryNum] * height)/maximum);
+        }
     }
+
+    System.out.println(Arrays.toString(blocks));
 
     // TODO: When you make the printArray method make the graph scalable at any height
     //!!!WARNING!!! MAGIC NUMBER
     // Fills chart from top to bottom
-    for (int chartLevel = 5; chartLevel >= 1; chartLevel--)
+
+    for (int chartLevel = height; chartLevel >= 1; chartLevel--)
     {
 
       System.out.print("|");

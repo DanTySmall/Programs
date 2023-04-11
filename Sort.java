@@ -62,12 +62,7 @@ public class Sort
         }
     }
 
-    System.out.println(Arrays.toString(blocks));
-
-    // TODO: When you make the printArray method make the graph scalable at any height
-    //!!!WARNING!!! MAGIC NUMBER
     // Fills chart from top to bottom
-
     for (int chartLevel = height; chartLevel >= 1; chartLevel--)
     {
 

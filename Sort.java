@@ -3,7 +3,7 @@
 // Not for class just for fun
 // Sorts numbers and shows sorting graphically
 
-// MAIN OBJECTIVE: Create Swap Function
+// MAIN OBJECTIVE: Do The Algorithm
 // ONE DAY: Learn how to recieve inputs from user at a later date
 
 import java.util.Arrays;
@@ -27,17 +27,17 @@ public class Sort
 
     // Stores Array into entryArray
     entryArray = input;
+    sortedArray = entryArray.clone();
 
   }
 
   public static void printArray()
   {
-    // To Become a Method
-    // Graphically Represents Arrays
 
+    // Graphically Represents Arrays
     // Find the maximum value in the array
-    float maximum = entryArray[0];
-    for (float num : entryArray)
+    float maximum = sortedArray[0];
+    for (float num : sortedArray)
     {
       if (num > maximum)
           maximum = num;
@@ -48,17 +48,17 @@ public class Sort
     int[] blocks = new int[numOfEntries];
     for(int entryNum = 0; entryNum < numOfEntries; entryNum++)
     {
-        if(entryArray[entryNum] == 0)
+        if(sortedArray[entryNum] == 0)
         {
           blocks[entryNum] = 0;
         }
-        else if (entryArray[entryNum] > 0 && (entryArray[entryNum] < (maximum/height)))
+        else if (sortedArray[entryNum] > 0 && (sortedArray[entryNum] < (maximum/height)))
         {
           blocks[entryNum] = 1;
         }
         else
         {
-           blocks[entryNum] = (int)((entryArray[entryNum] * height)/maximum);
+           blocks[entryNum] = (int)((sortedArray[entryNum] * height)/maximum);
         }
     }
 
@@ -89,6 +89,15 @@ public class Sort
 
   }
 
+  public static void swap(int a, int b)
+  {
+
+    int temp = sortedArray[a];
+    sortedArray[a] = sortedArray[b];
+    sortedArray[b] = temp;
+
+  }
+
   public static void main(String [] args)
   {
     // Tell the user if numbers were received from the command line
@@ -104,6 +113,9 @@ public class Sort
     {
 
       storeArray(args);
+      printArray();
+      System.out.println("=======(Swap)=======");
+      swap(0,2);
       printArray();
 
     }

@@ -3,8 +3,9 @@
 // Not for class just for fun
 // Sorts numbers and shows sorting graphically
 
-// MAIN OBJECTIVE: Do The Algorithm
+// MAIN OBJECTIVE: Clean up and deal with negative numbers
 // ONE DAY: Learn how to recieve inputs from user at a later date
+// TODO: What happens if user inputs non numbers?
 
 import java.util.Arrays;
 
@@ -18,7 +19,7 @@ public class Sort
   {
     // Inputs Received from the command line
     numOfEntries = nums.length;
-    System.out.println(Arrays.toString(nums));
+    //System.out.println(Arrays.toString(nums));
     int[] input = new int[numOfEntries];
 
     // Converts strings in args to integers
@@ -98,6 +99,30 @@ public class Sort
 
   }
 
+  public static boolean pass()
+  {
+    //Used in bubble sort
+
+    boolean swapDetect = false;
+
+    for(int position = 1; position < numOfEntries; position++)
+    {
+      if (sortedArray[position] s< sortedArray[position-1])
+      {
+        swap(position,position-1);
+        swapDetect = true;
+      }
+
+    }
+    return swapDetect;
+  }
+
+  public static void bubbleSort()
+  {
+    // Completes Bubble Sort
+    while (pass())
+  }
+
   public static void main(String [] args)
   {
     // Tell the user if numbers were received from the command line
@@ -111,12 +136,13 @@ public class Sort
     }
     else
     {
-
       storeArray(args);
+      System.out.println(Arrays.toString(sortedArray));
       printArray();
       System.out.println("=======(Swap)=======");
-      swap(0,2);
+      bubbleSort();
       printArray();
+      System.out.println(Arrays.toString(sortedArray));
 
     }
   }

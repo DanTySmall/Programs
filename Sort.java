@@ -8,18 +8,21 @@
 // TODO: What happens if user inputs non numbers?
 
 import java.util.Arrays;
+import java.io.*;
+
 
 public class Sort
 {
   public static int[] entryArray;
   public static int[] sortedArray;
   public static int numOfEntries;
+  public static final String ANSI_RESET = "\u001B[0m";
+  public static final String ANSI_RED = "\u001B[31m";
 
   public static void storeArray(String[] nums)
   {
     // Inputs Received from the command line
     numOfEntries = nums.length;
-    //System.out.println(Arrays.toString(nums));
     int[] input = new int[numOfEntries];
 
     // Converts strings in args to integers
@@ -29,7 +32,6 @@ public class Sort
     // Stores Array into entryArray
     entryArray = input;
     sortedArray = entryArray.clone();
-
   }
 
   public static void printArray()
@@ -45,13 +47,23 @@ public class Sort
     }
 
     // Finds the height of each bar in bar graph
-    int height = 10;
+    double height = 10;
     int[] blocks = new int[numOfEntries];
     for(int entryNum = 0; entryNum < numOfEntries; entryNum++)
     {
+
+        if(sortedArray[entryNum] < 0)
+        {
+          blocks[entryNum] = -1;
+        }
+        else
+        {
+          blocks[entryNum] = 1;
+        }
+
         if(sortedArray[entryNum] == 0)
         {
-          blocks[entryNum] = 0;
+          blocks[entryNum] *= 0;
         }
         else if (sortedArray[entryNum] > 0 && (sortedArray[entryNum] < (maximum/height)))
         {
@@ -61,10 +73,11 @@ public class Sort
         {
            blocks[entryNum] = (int)((sortedArray[entryNum] * height)/maximum);
         }
+
     }
 
     // Fills chart from top to bottom
-    for (int chartLevel = height; chartLevel >= 1; chartLevel--)
+    for (int chartLevel = (int)height; chartLevel >= 1; chartLevel--)
     {
 
       System.out.print("|");
@@ -78,10 +91,16 @@ public class Sort
           {
             System.out.print('\u2588');
           }
+          else if((blocks[position]) < (chartLevel - height))
+          {
+            System.out.print(ANSI_RED);
+            System.out.print('\u2588');
+          }
           else
           {
             System.out.print(' ');
           }
+          System.out.print(ANSI_RESET);
           System.out.print("|");
 
       }
@@ -107,7 +126,7 @@ public class Sort
 
     for(int position = 1; position < numOfEntries; position++)
     {
-      if (sortedArray[position] s< sortedArray[position-1])
+      if (sortedArray[position] < sortedArray[position-1])
       {
         swap(position,position-1);
         swapDetect = true;
@@ -120,7 +139,7 @@ public class Sort
   public static void bubbleSort()
   {
     // Completes Bubble Sort
-    while (pass())
+    while (pass()){}
   }
 
   public static void main(String [] args)
@@ -130,19 +149,18 @@ public class Sort
     {
 
       // This would be the point where you recieve input from the user.
-      System.out.println("No inputs were recieved from the command line.");
-      System.out.println("Try again with numbers in the command line");
+      System.out.println(ANSI_RED+"No inputs were recieved from the command line.");
+      System.out.println(ANSI_RED+"Try again with numbers in the command line");
+      System.out.println(ANSI_RESET+"To Run: java Sort num1 num2 ... numN");
 
     }
     else
     {
       storeArray(args);
-      System.out.println(Arrays.toString(sortedArray));
       printArray();
-      System.out.println("=======(Swap)=======");
+      System.out.println("========(Swap)========");
       bubbleSort();
       printArray();
-      System.out.println(Arrays.toString(sortedArray));
 
     }
   }

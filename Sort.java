@@ -3,7 +3,6 @@
 // Not for class just for fun
 // Sorts numbers and shows sorting graphically
 
-// MAIN OBJECTIVE: Clean up and deal with negative numbers
 // ONE DAY: Learn how to recieve inputs from user at a later date
 // TODO: What happens if user inputs non numbers?
 
@@ -37,6 +36,7 @@ public class Sort
   public static void printArray()
   {
 
+    System.out.println(Arrays.toString(sortedArray));
     // Graphically Represents Arrays
     // Find the maximum value in the array
     float maximum = sortedArray[0];
@@ -156,10 +156,13 @@ public class Sort
     }
     else
     {
+      System.out.println();
       storeArray(args);
+      System.out.println("Unsorted Array");
       printArray();
-      System.out.println("========(Swap)========");
+      System.out.println("\n========(Swap)========\n");
       bubbleSort();
+      System.out.println("Sorted Array");
       printArray();
 
     }
